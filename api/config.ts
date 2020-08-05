@@ -6,7 +6,7 @@
  * ! Don't put your privateKey inside this file directly!
  */
 export default {
-  viewId: 'UA-99645562-2',
+  viewId: '225754855',
   auth: {
     projectId: 'airy-harbor-285514',
     privateKey: process.env.PRIVATE_KEY,
