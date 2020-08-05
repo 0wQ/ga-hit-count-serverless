@@ -6,12 +6,12 @@
  * ! Don't put your privateKey inside this file directly!
  */
 export default {
-  viewId: process.env.VIEW_ID,
+  viewId: 'UA-99645562-2',
   auth: {
-    projectId: process.env.PROJECT_ID,
+    projectId: 'airy-harbor-285514',
     privateKey: process.env.PRIVATE_KEY,
-    clientEmail: process.env.CLIENT_EMAIL,
+    clientEmail: 'mizore-blog@airy-harbor-285514.iam.gserviceaccount.com',
   },
-  allFilter: ['/'],
+  allFilter: ['/20'],
   startDate: '2010-01-01',
 }
