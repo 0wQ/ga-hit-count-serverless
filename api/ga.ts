@@ -1,6 +1,6 @@
 import { NowRequest, NowResponse } from '@vercel/node'
 import { google } from 'googleapis'
-import config from './config'
+import config from './_config'
 
 /**
  * Blog hit count. Served by Google Analytics
@@ -84,5 +84,6 @@ export default async (req: NowRequest, resp: NowResponse) => {
   }
 
   resp.setHeader('Access-Control-Allow-Origin', '*')
+  resp.setHeader('Cache-Control', 'max-age=300')
   resp.status(200).send(res)
 }
