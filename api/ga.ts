@@ -84,6 +84,6 @@ export default async (req: NowRequest, resp: NowResponse) => {
   }
 
   resp.setHeader('Access-Control-Allow-Origin', '*')
-  resp.setHeader('Cache-Control', 'max-age=300')
+  resp.setHeader('Cache-Control', 'max-age=300, s-maxage=240, stale-while-revalidateCache-Control')
   resp.status(200).send(res)
 }
