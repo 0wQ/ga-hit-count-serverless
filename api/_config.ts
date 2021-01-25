@@ -13,5 +13,5 @@ export default {
     clientEmail: 'mizore-blog@airy-harbor-285514.iam.gserviceaccount.com',
   },
   allFilter: ['/'],
-  startDate: '2010-01-01',
+  startDate: '2019-01-01',
 }
