@@ -12,6 +12,6 @@ export default {
     privateKey: process.env.PRIVATE_KEY,
     clientEmail: 'mizore-blog@airy-harbor-285514.iam.gserviceaccount.com',
   },
-  allFilter: ['/20'],
+  allFilter: ['/'],
   startDate: '2010-01-01',
 }
