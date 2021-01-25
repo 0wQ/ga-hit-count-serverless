@@ -19,6 +19,8 @@ export default async (req: NowRequest, resp: NowResponse) => {
         expressions: [page] as string[],
       }
 
+  const hostname = config.hostname;
+
   const auth = new google.auth.GoogleAuth({
     credentials: {
       private_key: config.auth.privateKey,
@@ -63,7 +65,7 @@ export default async (req: NowRequest, resp: NowResponse) => {
               {
                 'dimensionName': 'ga:hostname',
                 'operator': 'EXACT',
-                'expressions': ['blog.iwz.me'],
+                'expressions': [hostname],
               }, {
                 'dimensionName': 'ga:pagePath',
                 'operator': 'BEGINS_WITH',
