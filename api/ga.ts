@@ -12,12 +12,12 @@ export default async (req: NowRequest, resp: NowResponse) => {
   // page path filter
   const filter =
     page === ''
-      ? { dimensionName: 'ga:pagePath', operator: 'BEGINS_WITH', expressions: config.allFilter }
-      : {
+      ? [{ dimensionName: 'ga:pagePath', operator: 'BEGINS_WITH', expressions: config.allFilter }]
+      : [{
         dimensionName: 'ga:pagePath',
         operator: 'EXACT',
         expressions: [page] as string[],
-      }
+      }]
 
   const hostname = config.hostname;
 
@@ -61,14 +61,7 @@ export default async (req: NowRequest, resp: NowResponse) => {
           ],
           dimensionFilterClauses: [{
             operator: 'AND',
-            filters: [
-              {
-                'dimensionName': 'ga:hostname',
-                'operator': 'EXACT',
-                'expressions': [hostname],
-              },
-              [filter],
-            ]
+            filters: [filter],
           }],
           orderBys: [
             {
