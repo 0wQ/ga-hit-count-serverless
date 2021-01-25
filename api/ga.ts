@@ -53,15 +53,22 @@ export default async (req: NowRequest, resp: NowResponse) => {
           ],
           dimensions: [
             {
-              name: 'ga:hostname',
+              name: 'ga:pagePath',
             },
             {
-              name: 'ga:pagePath',
+              name: 'ga:hostname',
             },
           ],
           dimensionFilterClauses: [{
             operator: 'AND',
-            filters: [filter],
+            filters: [
+              filter,
+              {
+                'dimensionName': 'ga:hostname',
+                'operator': 'EXACT',
+                'expressions': hostname,
+              }
+            ],
           }],
           orderBys: [
             {
