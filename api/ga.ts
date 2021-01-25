@@ -66,7 +66,7 @@ export default async (req: NowRequest, resp: NowResponse) => {
               {
                 'dimensionName': 'ga:hostname',
                 'operator': 'EXACT',
-                'expressions': hostname,
+                'expressions': [hostname] as string[],
               }
             ],
           }],
