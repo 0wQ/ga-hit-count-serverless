@@ -53,8 +53,14 @@ export default async (req: NowRequest, resp: NowResponse) => {
             {
               name: 'ga:hostname',
             },
+            {
+              name: 'ga:pagePath',
+            },
           ],
           dimensionFilterClauses: [
+            {
+              filters: 'blog.iwz.me',
+            },
             {
               filters: [filter],
             },
