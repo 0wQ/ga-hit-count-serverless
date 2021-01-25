@@ -6,8 +6,6 @@ import config from './_config'
  * Blog hit count. Served by Google Analytics
  */
 export default async (req: NowRequest, resp: NowResponse) => {
-  // API query page parameter
-  const { page = '' } = req.query
 
   const hostname = config.hostname;
 
@@ -55,12 +53,6 @@ export default async (req: NowRequest, resp: NowResponse) => {
               }
             ],
           }],
-          orderBys: [
-            {
-              fieldName: 'ga:pageviews',
-              sortOrder: 'DESCENDING',
-            },
-          ],
         },
       ],
     },
@@ -69,7 +61,7 @@ export default async (req: NowRequest, resp: NowResponse) => {
 
   let res = []
   if (report.totals[0].values[0] === '0') {
-    res = [{ page: page, hit: '0' }]
+    res = [{ hit: '0' }]
   } else {
     report.rows.forEach(r => {
       // Remove all pages with querys
