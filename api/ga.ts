@@ -66,11 +66,8 @@ export default async (req: NowRequest, resp: NowResponse) => {
                 'dimensionName': 'ga:hostname',
                 'operator': 'EXACT',
                 'expressions': [hostname],
-              }, {
-                'dimensionName': 'ga:pagePath',
-                'operator': 'BEGINS_WITH',
-                'expressions': [filter],
               },
+              [filter],
             ]
           }],
           orderBys: [
