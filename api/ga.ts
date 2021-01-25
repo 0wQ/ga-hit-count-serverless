@@ -53,9 +53,6 @@ export default async (req: NowRequest, resp: NowResponse) => {
             {
               name: 'ga:hostname',
             },
-            {
-              name: 'ga:pagePath',
-            },
           ],
           dimensionFilterClauses: [{
             filters: [
@@ -63,14 +60,9 @@ export default async (req: NowRequest, resp: NowResponse) => {
                 'dimensionName': 'ga:hostname',
                 'operator': 'BEGINS_WITH',
                 'expressions': ['blog.iwz.me'],
-              }, {
-                'dimensionName': 'ga:pagePath',
-                'operator': 'BEGINS_WITH',
-                'expressions': [filter],
-              }
+              },
             ]
-          }
-          ],
+          }],
           orderBys: [
             {
               fieldName: 'ga:pageviews',
