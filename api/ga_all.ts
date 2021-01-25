@@ -74,7 +74,7 @@ export default async (req: NowRequest, resp: NowResponse) => {
     report.rows.forEach(r => {
       // Remove all pages with querys
       if (!r.dimensions[0].includes('?')) {
-        res.push({ page: r.dimensions[0], hit: r.metrics[0].values[0] })
+        res.push({ hit: r.metrics[0].values[0] })
       }
     })
   }
