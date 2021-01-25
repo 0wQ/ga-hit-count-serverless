@@ -38,6 +38,9 @@ export default async (req: NowRequest, resp: NowResponse) => {
             {
               expression: 'ga:pageviews',
             },
+            {
+              expression: 'ga:users',
+            },
           ],
           dimensions: [
             {
@@ -72,7 +75,7 @@ export default async (req: NowRequest, resp: NowResponse) => {
     report.rows.forEach(r => {
       // Remove all pages with querys
       if (!r.dimensions[0].includes('?')) {
-        res.push({ hostname: r.dimensions[0], hit: r.metrics[0].values[0] })
+        res.push({ hostname: r.dimensions[0], hit: r.metrics[0].values[0], users: r.metrics[0].values[1] })
       }
     })
   }
