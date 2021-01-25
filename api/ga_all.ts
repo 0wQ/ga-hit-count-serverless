@@ -7,7 +7,7 @@ import config from './_config'
  */
 export default async (req: NowRequest, resp: NowResponse) => {
   // API query page parameter
-  const { hostname = config.hostname } = req.query
+  const { hostname = '' } = req.query
 
   const auth = new google.auth.GoogleAuth({
     credentials: {
@@ -49,7 +49,7 @@ export default async (req: NowRequest, resp: NowResponse) => {
               {
                 'dimensionName': 'ga:hostname',
                 'operator': 'EXACT',
-                'expressions': [hostname] as string[],
+                'expressions': [hostname || config.hostname] as string[],
               }
             ],
           }],
