@@ -14,10 +14,10 @@ export default async (req: NowRequest, resp: NowResponse) => {
     page === ''
       ? { dimensionName: 'ga:pagePath', operator: 'BEGINS_WITH', expressions: config.allFilter }
       : {
-          dimensionName: 'ga:pagePath',
-          operator: 'EXACT',
-          expressions: [page] as string[],
-        }
+        dimensionName: 'ga:pagePath',
+        operator: 'EXACT',
+        expressions: [page] as string[],
+      }
 
   const auth = new google.auth.GoogleAuth({
     credentials: {
@@ -58,16 +58,19 @@ export default async (req: NowRequest, resp: NowResponse) => {
             },
           ],
           dimensionFilterClauses: [{
-            filters: [{
-              'dimensionName': 'ga:hostname',
-              'operator': 'BEGINS_WITH',
-              'expressions': ['blog.iwz.me'],
-            }, {
-              'dimensionName': 'ga:pagePath',
-              'operator': 'BEGINS_WITH',
-              'expressions': [filter],
-            }]
-          }],
+            filters: [
+              {
+                'dimensionName': 'ga:hostname',
+                'operator': 'BEGINS_WITH',
+                'expressions': ['blog.iwz.me'],
+              }, {
+                'dimensionName': 'ga:pagePath',
+                'operator': 'BEGINS_WITH',
+                'expressions': [filter],
+              }
+            ]
+          }
+          ],
           orderBys: [
             {
               fieldName: 'ga:pageviews',
