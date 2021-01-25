@@ -15,7 +15,7 @@ export default async (req: NowRequest, resp: NowResponse) => {
       ? { dimensionName: 'ga:pagePath', operator: 'BEGINS_WITH', expressions: config.allFilter }
       : {
         dimensionName: 'ga:pagePath',
-        operator: 'BEGINS_WITH',
+        operator: 'EXACT',
         expressions: [page] as string[],
       }
 
