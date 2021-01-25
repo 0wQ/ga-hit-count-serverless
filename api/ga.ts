@@ -58,10 +58,11 @@ export default async (req: NowRequest, resp: NowResponse) => {
             },
           ],
           dimensionFilterClauses: [{
+            operator: 'AND',
             filters: [
               {
                 'dimensionName': 'ga:hostname',
-                'operator': 'BEGINS_WITH',
+                'operator': 'EXACT',
                 'expressions': ['blog.iwz.me'],
               }, {
                 'dimensionName': 'ga:pagePath',
