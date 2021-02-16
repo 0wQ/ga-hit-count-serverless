@@ -7,7 +7,7 @@ import config from './_config'
  */
 export default async (req: NowRequest, resp: NowResponse) => {
   // API query page parameter
-  const { page = '' } = req.query
+  const { hostname = config.hostname, page = '' } = req.query
 
   // page path filter
   const filter =
@@ -18,8 +18,6 @@ export default async (req: NowRequest, resp: NowResponse) => {
         operator: 'EXACT',
         expressions: [page] as string[],
       }
-
-  const hostname = config.hostname;
 
   const auth = new google.auth.GoogleAuth({
     credentials: {
