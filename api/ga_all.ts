@@ -7,7 +7,17 @@ import config from './_config'
  */
 export default async (req: NowRequest, resp: NowResponse) => {
   // API query page parameter
-  const { hostname = '' } = req.query
+  const { hostname = '', page = '' } = req.query
+
+  // page path filter
+  const filter =
+    page === ''
+      ? { dimensionName: 'ga:pagePath', operator: 'BEGINS_WITH', expressions: config.allFilter }
+      : {
+        dimensionName: 'ga:pagePath',
+        operator: 'EXACT',
+        expressions: [page] as string[],
+      }
 
   const auth = new google.auth.GoogleAuth({
     credentials: {
@@ -38,17 +48,19 @@ export default async (req: NowRequest, resp: NowResponse) => {
             {
               expression: 'ga:pageviews',
             },
-            {
-              expression: 'ga:users',
-            },
           ],
           dimensions: [
+            {
+              name: 'ga:pagePath',
+            },
             {
               name: 'ga:hostname',
             },
           ],
           dimensionFilterClauses: [{
+            operator: 'AND',
             filters: [
+              filter,
               {
                 'dimensionName': 'ga:hostname',
                 'operator': 'EXACT',
@@ -70,12 +82,12 @@ export default async (req: NowRequest, resp: NowResponse) => {
 
   let res = []
   if (report.totals[0].values[0] === '0') {
-    res = [{ hostname: hostname, hit: '0' }]
+    res = [{ page: page, hit: '0' }]
   } else {
     report.rows.forEach(r => {
       // Remove all pages with querys
       if (!r.dimensions[0].includes('?')) {
-        res.push({ hostname: r.dimensions[0], hit: r.metrics[0].values[0], users: r.metrics[0].values[1] })
+        res.push({ page: r.dimensions[0], hit: r.metrics[0].values[0] })
       }
     })
   }
