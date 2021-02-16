@@ -52,9 +52,6 @@ export default async (req: NowRequest, resp: NowResponse) => {
           ],
           dimensions: [
             {
-              name: 'ga:hostname',
-            },
-            {
               name: 'ga:pagePath',
             },
           ],
@@ -83,12 +80,12 @@ export default async (req: NowRequest, resp: NowResponse) => {
 
   let res = []
   if (report.totals[0].values[0] === '0') {
-    res = [{ hostname: hostname, page: page, hit: '0' }]
+    res = [{ page: page, hit: '0' }]
   } else {
     report.rows.forEach(r => {
       // Remove all pages with querys
       if (!r.dimensions[0].includes('?')) {
-        res.push({ hostname: r.dimensions[0], page: r.dimensions[1], hit: r.metrics[0].values[0] })
+        res.push({ page: r.dimensions[0], hit: r.metrics[0].values[0] })
       }
     })
   }
