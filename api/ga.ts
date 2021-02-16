@@ -52,10 +52,10 @@ export default async (req: NowRequest, resp: NowResponse) => {
           ],
           dimensions: [
             {
-              name: 'ga:hostname',
+              name: 'ga:pagePath',
             },
             {
-              name: 'ga:pagePath',
+              name: 'ga:hostname',
             },
           ],
           dimensionFilterClauses: [{
